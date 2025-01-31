@@ -7,7 +7,7 @@
 Clone the repository
 
 ```bash
-Project repo: https://github.com/
+Project repo: https://github.com/MuhammadAbdullah95/medical-chatbot-using-Llama.git
 ```
 
 ### STEP 01- Create a conda environment after opening the repository
@@ -32,10 +32,11 @@ pip install -r requirements.txt
 PINECONE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
-### Use Open Source LLM Like Llama, Deepseek, Google Gemini etc.
+### Use LLMs Like Llama, Deepseek, Google Gemini, OpenAi etc.
+
+## Set Credentials as follows in `.env` file
 
 ```ini
-## Set Credentials as follows in .env file
 
 GEMINI_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxx"
 GROQ_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxx"
