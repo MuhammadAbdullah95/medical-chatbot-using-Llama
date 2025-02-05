@@ -4,6 +4,13 @@ from pinecone import Pinecone, ServerlessSpec
 from langchain_groq import ChatGroq
 from langchain_pinecone import PineconeVectorStore
 from langchain.prompts import PromptTemplate
+from langchain.memory import ConversationBufferMemory
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts.chat import (
+    ChatPromptTemplate,
+    HumanMessagePromptTemplate,
+    MessagesPlaceholder,
+)
 from langchain_community.llms import CTransformers
 from langchain.chains import RetrievalQA
 from dotenv import load_dotenv
@@ -19,6 +26,15 @@ PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
 embeddings = download_hugging_face_embeddings()
+
+memory = ConversationBufferMemory(k=5, memory_key="chat_history", return_messages=True)
+
+prompt = ChatPromptTemplate(
+    [
+        MessagesPlaceholder(variable_name="chat_history"),
+        HumanMessagePromptTemplate.from_template("{prompt_template}"),
+    ]
+)
 
 # Initializing the Pinecone
 pc = Pinecone(api_key=PINECONE_API_KEY)
@@ -62,8 +78,10 @@ qa = RetrievalQA.from_chain_type(
     llm=llm,
     chain_type="stuff",
     retriever=docsearch.as_retriever(search_kwargs={"k": 2}),
-    return_source_documents=True,
+    # return_source_documents=True,
     chain_type_kwargs=chain_type_kwargs,
+    memory=memory,
+    # output_key="result",
 )
 
 
