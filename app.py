@@ -55,7 +55,6 @@ if index_name not in existing_indexes:
 
 index = pc.Index(index_name)
 
-index_name = "medical-bot"
 
 docsearch = PineconeVectorStore(index=index, embedding=embeddings)
 
@@ -77,7 +76,7 @@ llm = ChatGroq(
 qa = RetrievalQA.from_chain_type(
     llm=llm,
     chain_type="stuff",
-    retriever=docsearch.as_retriever(search_kwargs={"k": 2}),
+    retriever=docsearch.as_retriever(search_kwargs={"k": 5}),
     # return_source_documents=True,
     chain_type_kwargs=chain_type_kwargs,
     memory=memory,

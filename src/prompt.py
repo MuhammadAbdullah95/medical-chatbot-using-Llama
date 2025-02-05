@@ -5,6 +5,6 @@ If you don't know the answer, just say that you don't know, don't try to make up
 Context: {context}
 Question: {question}
 
-Only return the helpful answer below and nothing else.
+Only return the helpful answer below and nothing else. and also use some vocabulary words from context to make refrence
 Helpful answer:
 """
