@@ -10,4 +10,5 @@ langchain-pinecone
 langchain-community
 pypdf
 langchain-huggingface
+langchain-google-genai
 -e .
